@@ -30,7 +30,7 @@ public class DriverSingleton {
         return instance;
     }
 
-    public static void closeObjectInstance() {
+    public static void classObjectInstance() {
         instance = null;
         driver.quit();
     }

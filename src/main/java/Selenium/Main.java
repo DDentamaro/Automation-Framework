@@ -1,12 +1,11 @@
 package Selenium;
 import Pages.CartPage;
-import Pages.CartPage;
-import Pages.SingInPage;
+import Pages.CheckOutPage;
 import Pages.HomePage;
+import Pages.LogInPage;
 import drivers.DriverSingleton;
 import org.openqa.selenium.WebDriver;
-import pages.CheckoutPage;
-import pages.ShopPage;
+
 import utils.FrameworkProperties;
 
 public class Main {
@@ -14,40 +13,29 @@ public class Main {
         FrameworkProperties frameworkProperties = new FrameworkProperties();
         DriverSingleton.getInstance(frameworkProperties.getProperty("browser"));
         WebDriver driver = DriverSingleton.getDriver();
-        driver.get("https://bitheap.tech/");
+        driver.get("https://www.saucedemo.com/");
 
-        HomePage homePage = new HomePage();
-        SingInPage signInPage = new SingInPage();
-        ShopPage shopPage = new ShopPage();
-        CartPage cartPage = new CartPage();
-        pages.CheckoutPage checkoutPage = new CheckoutPage();
+        HomePage homepage = new HomePage();
+        LogInPage loginpage = new LogInPage();
+        CartPage cartpage = new CartPage();
+        CheckOutPage checkoutpage = new CheckOutPage();
 
-        homePage.clickSignIn();
-        signInPage.logIn("ddd", "dddddddd");
+        loginpage.clickLogInButton();
+        loginpage.logIn("standard_user" ,"secret_sauce");
 
-        if(homePage.getUsername().equals("Hello, ddd"))
+        if(homepage.getTitlePage().equals("Swag Labs"))
             System.out.println("Test Passed");
         else
-            System.out.println("Test Failed");
+            System.out.println("test failed");
 
-        homePage.clickShopButton();
+        homepage.addElementToCart();
+        homepage.clickCartButton();
+        cartpage.clickCheckOutButton();
+        checkoutpage.provideUserDetails();
+        checkoutpage.clickContinueButton();
 
-        shopPage.addElementToCart();
-        shopPage.proceedToCheckout();
-        cartPage.proceedToCheckout();
-        checkoutPage.provideBillingDetails();
-        checkoutPage.placeOrder();
 
-        if(checkoutPage.getOrderStatus().equals("Order received"))
-            System.out.println("Test Passed");
-        else
-            try {
-                throw new Exception();
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
 
-        DriverSingleton.closeObjectInstance();
+
     }
 }
-

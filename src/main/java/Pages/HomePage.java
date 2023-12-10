@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.Constants;
 
 import java.time.Duration;
 
@@ -18,29 +19,44 @@ public class HomePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "#menu-item-1311 > a")
-    private WebElement signInButton;
+    @FindBy(id = "shopping_cart_container")
+    private WebElement cartButton;
 
-    @FindBy(id = "menu-item-1310")
-    private WebElement shopButton;
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement addToCartButton;
 
-    @FindBy(css = "#menu-item-1314 > a")
-    private WebElement username;
+    @FindBy(css = "#shopping_cart_container > a > span")
+    private WebElement numberOfProducts;
 
-    public void clickSignIn() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.elementToBeClickable(signInButton));
-        signInButton.click();
+    @FindBy(css = "#header_container > div.primary_header > div.header_label > div")
+    private WebElement titlePage;
+
+    public void clickCartButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(cartButton));
+
+        cartButton.click();
     }
 
-    public void clickShopButton() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        wait.until(ExpectedConditions.elementToBeClickable(shopButton));
-        shopButton.click();
+    public void addElementToCart() {
+
+        addToCartButton.click();
+
+        if(numberOfProducts.getText().contains(Constants.CART_QUANTITY))
+
+            System.out.println("Cart has been updated ");
+
+        else{
+            System.out.println("Cart has not been updated ");
+
+        }
     }
 
-    public String getUsername() {
-        return username.getText();
+
+
+
+    public String getTitlePage() {
+        return titlePage.getText();
     }
 
 }
