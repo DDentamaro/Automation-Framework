@@ -1,8 +1,5 @@
 package Selenium;
-import Pages.CartPage;
-import Pages.CheckOutPage;
-import Pages.HomePage;
-import Pages.LogInPage;
+import Pages.*;
 import drivers.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 
@@ -19,9 +16,13 @@ public class Main {
         LogInPage loginpage = new LogInPage();
         CartPage cartpage = new CartPage();
         CheckOutPage checkoutpage = new CheckOutPage();
+        CheckOutOverview checkoutoverview = new CheckOutOverview();
+        CheckOutFinish checkoutfinish = new CheckOutFinish();
+
 
         loginpage.clickLogInButton();
         loginpage.logIn("standard_user" ,"secret_sauce");
+
 
         if(homepage.getTitlePage().equals("Swag Labs"))
             System.out.println("Test Passed");
@@ -33,6 +34,19 @@ public class Main {
         cartpage.clickCheckOutButton();
         checkoutpage.provideUserDetails();
         checkoutpage.clickContinueButton();
+        checkoutoverview.clickFinishButton();
+
+        if(checkoutfinish.getCheckOutTitle().equals("Thank you for your order!"))
+            System.out.println("Order delivered");
+        else
+            System.out.println("test failed");
+
+
+        checkoutfinish.clickBackHomeButton();
+
+
+
+
 
 
 

@@ -25,6 +25,9 @@ public class HomePage {
     @FindBy(id = "add-to-cart-sauce-labs-backpack")
     private WebElement addToCartButton;
 
+    @FindBy(id = "remove-sauce-labs-backpack")
+    private WebElement removeFromCartButton;
+
     @FindBy(css = "#shopping_cart_container > a > span")
     private WebElement numberOfProducts;
 
@@ -36,6 +39,12 @@ public class HomePage {
         wait.until(ExpectedConditions.elementToBeClickable(cartButton));
 
         cartButton.click();
+    }
+    public void clickRemoveButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(removeFromCartButton));
+
+        removeFromCartButton.click();
     }
 
     public void addElementToCart() {

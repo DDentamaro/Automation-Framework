@@ -35,4 +35,10 @@ public class CartPage {
 
         checkOutButton.click();
     }
+    public void clickContinueShoppingButton() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.TIMEOUT));
+        wait.until(ExpectedConditions.elementToBeClickable(checkOutButton));
+
+        continueShoppingButton.click();
+    }
 }

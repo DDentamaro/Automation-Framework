@@ -34,7 +34,7 @@ public class CheckOutPage {
     private WebElement cancelButton;
 
     public void provideUserDetails() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(Constants.TIMEOUT));
         wait.until(ExpectedConditions.visibilityOf(firstName));
         wait.until(ExpectedConditions.visibilityOf(lastName));
         wait.until(ExpectedConditions.visibilityOf(postalCode));
