@@ -5,7 +5,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Firefox implements DriverStrategy {
     public WebDriver setStrategy() {
-        System.setProperty("webdriver.gecko.driver", "src/main/geckodriver.exe");
+        System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
         WebDriver driver = new FirefoxDriver();
         return driver;
     }

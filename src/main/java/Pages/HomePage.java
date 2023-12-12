@@ -61,9 +61,6 @@ public class HomePage {
         }
     }
 
-
-
-
     public String getTitlePage() {
         return titlePage.getText();
     }

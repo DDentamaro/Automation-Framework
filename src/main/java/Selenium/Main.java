@@ -3,7 +3,11 @@ import Pages.*;
 import drivers.DriverSingleton;
 import org.openqa.selenium.WebDriver;
 
+import utils.Constants;
 import utils.FrameworkProperties;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,6 +22,8 @@ public class Main {
         CheckOutPage checkoutpage = new CheckOutPage();
         CheckOutOverview checkoutoverview = new CheckOutOverview();
         CheckOutFinish checkoutfinish = new CheckOutFinish();
+
+
 
 
         loginpage.clickLogInButton();
@@ -36,6 +42,7 @@ public class Main {
         checkoutpage.clickContinueButton();
         checkoutoverview.clickFinishButton();
 
+
         if(checkoutfinish.getCheckOutTitle().equals("Thank you for your order!"))
             System.out.println("Order delivered");
         else
@@ -43,7 +50,6 @@ public class Main {
 
 
         checkoutfinish.clickBackHomeButton();
-
 
 
 
